@@ -1,3 +1,5 @@
+import logo from '../images/logo.png'
+import background from '../images/background.jpg'
 import '../css/FrontPage.css'
 const FrontPage = () => {
 
@@ -6,8 +8,21 @@ const FrontPage = () => {
     }
 
     return (
-        <div>
-            <button onClick={redirectButton} className="button-30" role="button">Authenticate with fhict</button>
+        <div className='page'>
+            <div className='background'>
+                <div className='purple-container'>
+                    <img alt='fontys-background' className='main-background' src={background} />
+                </div>
+            </div>
+            <div>
+                <div className='authenticate-container'>
+                    <img alt='fontys-icon' className='fontys-logo' src={logo} />
+                    <form  >
+                        <label>Access your infralab certificates.</label><br />
+                        <button onClick={redirectButton} type='submit'><strong>Autenticate with FHICT</strong></button>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }
