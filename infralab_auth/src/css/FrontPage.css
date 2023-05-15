@@ -102,3 +102,12 @@
         padding-left: 0px;
     }
 }
+
+/*Authentitaced page*/
+
+.authLabel{
+    font-size: large;
+    color: #6a994e;
+    font-weight: 600;
+    font-style: italic;    
+}
