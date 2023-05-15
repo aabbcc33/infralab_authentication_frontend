@@ -19,7 +19,7 @@ const FrontPage = () => {
                     <img alt='fontys-icon' className='fontys-logo' src={logo} />
                     <form  >
                         <label>Access your infralab certificates.</label><br />
-                        <button onClick={redirectButton} type='submit'><strong>Autenticate with FHICT</strong></button>
+                        <button onClick={redirectButton} type='submit'><strong>Authenticate with FHICT</strong></button>
                     </form>
                 </div>
             </div>
