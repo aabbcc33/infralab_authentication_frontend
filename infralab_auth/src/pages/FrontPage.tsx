@@ -1,5 +1,3 @@
-import logo from '../images/logo.png'
-import background from '../images/background.jpg'
 import '../css/FrontPage.css'
 import { generateState } from '../utils/RedirectUrlStateGenerator';
 const FrontPage = () => {
@@ -13,9 +11,6 @@ const FrontPage = () => {
          const response_type: string = "code";
          // this parameter is added for security to prevent forgery of the url
          const state: string = generateState();
- 
- 
- 
          
          window.location.replace(`${authProviderUrl}?client_id=${client_id}&scope=${scopes}&redirect_uri=${redirectUri}&response_type=${response_type}&state=${state}`);
     }
