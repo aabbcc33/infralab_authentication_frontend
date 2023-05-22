@@ -1,5 +1,8 @@
 import '../css/FrontPage.css'
 import { generateState } from '../utils/RedirectUrlStateGenerator';
+import axios from "axios";
+
+
 const FrontPage = () => {
 
     const redirectButton = () => {
@@ -15,11 +18,21 @@ const FrontPage = () => {
          window.location.replace(`${authProviderUrl}?client_id=${client_id}&scope=${scopes}&redirect_uri=${redirectUri}&response_type=${response_type}&state=${state}`);
     }
 
+    const getCert = () => {
+        return axios.get("http://172.16.1.12:8080/certificates");
+      };
+      
+
     
     return (
+        <>
         <div>
             <button onClick={redirectButton} className="button-30" role="button">Authenticate with fhict</button>
         </div>
+        <div>
+            <button onClick={getCert} className="button-30" role="button">get cert?</button>
+        </div>
+        </>
     )
 
 }
