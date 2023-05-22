@@ -19,7 +19,7 @@ const FrontPage = () => {
     }
 
     const getCert = () => {
-        return axios.get("http://172.16.1.12:8080/certificates");
+        return axios.get("https://172.16.1.12:8080/certificates");
       };
       
 
