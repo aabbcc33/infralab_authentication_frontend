@@ -1,15 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../css/FrontPage.css'
 import { generateState } from '../utils/RedirectUrlStateGenerator';
 import axios from "axios";
-
+import { useNavigate } from "react-router"
 
 const FrontPage = () => {
     const [certificate, setCertificate] = useState<string>("");
 
-
-
-    const redirectButton = () => {
+    const redirectButton = async () => {
         //building out the redirect url for fhict
         const authProviderUrl: string = "https://identity.fhict.nl/connect/authorize";
         const client_id: string = "i476232-infralabau";
