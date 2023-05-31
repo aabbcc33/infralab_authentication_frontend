@@ -16,6 +16,7 @@ const FrontPage = () => {
         const response_type: string = "code";
         // this parameter is added for security to prevent forgery of the url
         const state: string = generateState();
+        sessionStorage.setItem("state", state);
 
         window.location.replace(`${authProviderUrl}?client_id=${client_id}&scope=${scopes}&redirect_uri=${redirectUri}&response_type=${response_type}&state=${state}`);
     }
