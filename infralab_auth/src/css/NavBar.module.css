@@ -1,0 +1,28 @@
+.navBar {
+    list-style: none;
+    text-decoration: none;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav img {
+    height: 100px;
+}
+
+.credbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 50px;
+}
+
+.buttonbox {
+    display: flex;
+    justify-content: center;
+}
+
+.auth {
+    display: flex;
+    flex-direction: row;
+}
