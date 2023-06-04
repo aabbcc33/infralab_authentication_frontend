@@ -23,7 +23,7 @@ function NotAuthNavBar() {
     return (
         <div>
             <nav className={styles.navBar}>
-                <div className={styles.logo}><img src={logo}/></div>
+                <div className={styles.logo}><NavLink to={"/"}><img src={logo}/></NavLink></div>
             </nav>
         </div>
     )
