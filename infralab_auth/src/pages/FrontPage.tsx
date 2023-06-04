@@ -60,7 +60,7 @@ const FrontPage = () => {
     const sendTeacher = () => {
         navigate("/admin");
     }
-
+    
     // change display of front page depending on user creds
     if (auth?.roles.includes("student")) {
         return (

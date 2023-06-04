@@ -10,10 +10,10 @@ const AuthPage = () => {
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
-
-        const authString = urlParams.get("auth")?.toString();
+        const authString = urlParams.get("auth");
 
         if (authString) {
+            console.log("passed");
             const authObject = JSON.parse(authString);
 
             // save credentials to application context
@@ -32,15 +32,14 @@ const AuthPage = () => {
             // send to error page, auth is null
             navigate("/error")
         }
-        
-
-        
-
-
     }, [])
 
+    useEffect(() => {
+        navigate("/");
+      }, [navigate]);
+
     return (
-        <div>test</div>
+        <div>Authenticating ...</div>
     )
 }
 
