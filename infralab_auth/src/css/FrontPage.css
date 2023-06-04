@@ -1,3 +1,12 @@
+* {
+    font-family: 'Barlow';
+}
+
+.error {
+    color: #C3362B;
+}
+  
+
 .button-30 {
     align-items: center;
     text-align: center;

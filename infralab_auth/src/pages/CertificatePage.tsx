@@ -1,10 +1,16 @@
-import useAuthorization from "../utils/useAuthorization";
-import { useEffect, useState } from 'react';
-import { generateState } from '../utils/RedirectUrlStateGenerator';
+import { useAuth } from '../components/context/AuthProvider';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const CertificatePage = () => {
-    
-    useAuthorization();
+
+    const { auth } = useAuth();
+    const location = useLocation();
+    console.log(auth);
+
+    if (!auth?.roles.includes("student")) {
+        return <Navigate to="/error" state={{ from: location }}></Navigate>
+    }
+
     
     return (
         <>
