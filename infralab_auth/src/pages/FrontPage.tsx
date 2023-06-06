@@ -8,7 +8,7 @@ import { useAuth } from '../components/context/AuthProvider';
 const FrontPage = () => {
 
     const [certificate, setCertificate] = useState<string>("");
-    const { auth }  = useAuth();
+    const { auth } = useAuth();
     const { saveAuth } = useAuth();
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const FrontPage = () => {
         const authProviderUrl: string = "https://identity.fhict.nl/connect/authorize";
         const client_id: string = "i476232-infralabau";
         const scopes: string = "fhict fhict_personal openid profile roles";
-        const redirectUri: string = "https://localhost:8080/";
+        const redirectUri: string = "https://infralab.fontysict.nl:8080/";
         const response_type: string = "code";
 
         // this parameter is added for security to prevent forgery of the url
@@ -40,18 +40,28 @@ const FrontPage = () => {
         // because fontys API response is a link, we need to get its code param and send it to our backend
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
-        
+
         // send code to backend
         axios.get("https://localhost:8080/?code=" + code).catch(error => console.log(error));
 
-      }, [window.location]);
+    }, [window.location]);
 
+    const https = require('https');
+
+    const agent = new https.Agent({
+        rejectUnauthorized: false,
+    });
+
+    const client = axios.create({
+        httpsAgent: agent
+    });
 
     const getCert = () => {
-        return axios.get("https://172.16.1.12:8080/certificates").then((response) => {
+        return client.get('https://infralab.fontysict.nl:8080/test').then((response) => {
             setCertificate(response.data);
         })
     };
+
 
     const sendStudent = () => {
         navigate("/certificates");
@@ -60,7 +70,7 @@ const FrontPage = () => {
     const sendTeacher = () => {
         navigate("/admin");
     }
-    
+
     // change display of front page depending on user creds
     if (auth?.roles.includes("student")) {
         return (
@@ -70,7 +80,7 @@ const FrontPage = () => {
                     <div>
                         <button onClick={sendStudent} className="button-30" role="button">View my credentials</button>
                     </div>
-                    
+
                 </div>
             </>
         )
@@ -108,7 +118,7 @@ const FrontPage = () => {
         )
     }
 
-    
+
 
 }
 
