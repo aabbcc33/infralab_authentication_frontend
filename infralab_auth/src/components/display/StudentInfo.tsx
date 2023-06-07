@@ -1,12 +1,27 @@
+import axios from 'axios';
 import styles from '../../css/StudentInfo.module.css'
 import { useAuth } from '../context/AuthProvider';
+import { useEffect, useState } from 'react';
 
-function StudentInfo () {
+function StudentInfo() {
 
-    const {auth} = useAuth();
+    const { auth } = useAuth();
+    const [certificate, setCertificate] = useState<string>("");
+
+    useEffect(() => {
+        getCertificate();
+    })
 
     //get certificate here
-    
+
+    const getCertificate = () => {
+        return axios.post("https://infralab.fontysict.nl:8080/certificates", auth.email).then((response) => {
+            console.log(response);
+            console.log(response.data);
+            setCertificate(response.data);
+        })
+    };
+
 
     return (
         <div className={styles.infoarea}>
@@ -28,14 +43,14 @@ function StudentInfo () {
                     <div className={styles.row}>
                         <div className={styles.title}>Roles</div>
                         <div className={styles.content}>
-                        {auth.roles.map((role) => (
-                            <li>{role}</li>
+                            {auth.roles.map((role) => (
+                                <li>{role}</li>
                             ))}
                         </div>
                     </div>
                     <div className={styles.row}>
                         <div className={styles.title}>Certificate</div>
-                        <div className={styles.content}>test</div>
+                        <div className={styles.content}>{certificate}</div>
                     </div>
                 </div>
             </div>
