@@ -4,6 +4,7 @@ import { generateState } from '../utils/RedirectUrlStateGenerator';
 import axios from "axios";
 import { useNavigate } from "react-router"
 import { useAuth } from '../components/context/AuthProvider';
+import StudentInfo from '../components/display/StudentInfo';
 
 const FrontPage = () => {
 
@@ -65,13 +66,7 @@ const FrontPage = () => {
     if (auth?.roles.includes("student")) {
         return (
             <>
-                <div>
-                    <div>You are logged in as {auth.name}</div>
-                    <div>
-                        <button onClick={sendStudent} className="button-30" role="button">View my credentials</button>
-                    </div>
-                    
-                </div>
+                <StudentInfo/>
             </>
         )
     } else if (auth?.roles.includes("teacher")) {

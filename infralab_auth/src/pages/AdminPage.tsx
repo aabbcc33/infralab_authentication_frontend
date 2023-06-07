@@ -2,7 +2,6 @@ import { useAuth } from '../components/context/AuthProvider';
 import { Navigate, useLocation } from 'react-router-dom';
 import { Tabs, Tab } from 'react-bootstrap';
 import { useState } from 'react';
-import '../css/AdminPage.module.css'
 
 const Adminpage: React.FC = () => {
 
@@ -11,7 +10,7 @@ const Adminpage: React.FC = () => {
 
     const [key, setKey] = useState<string|null>('home');
 
-    if (!auth?.roles.includes("")) {
+    if (!auth?.roles.includes("teacher")) {
         return <Navigate to="/error" state={{ from: location }}></Navigate>
     }
 
@@ -23,15 +22,17 @@ const Adminpage: React.FC = () => {
         <>
             <div className="trending">
                 <Tabs activeKey={key!} onSelect={(k) => setKey(k)}>
-                    <Tab 
-                        eventKey={"home"} 
-                        title="Top"
-                    >
+                    <Tab eventKey={"home"} title="Add student">
                     {key === 'home' && (
                         <button onClick={addStudent} className="button-30" role="button">Add student</button>
                     )}
                     </Tab>
-                    <Tab eventKey={"position"} title="New">
+                    <Tab eventKey={"addserver"} title="Add server">
+                    {key === 'position' && (
+                        <button onClick={addStudent} className="button-30" role="button">Add student</button>
+                    )}
+                    </Tab>
+                    <Tab eventKey={"assignserver"} title="Assign server">
                     {key === 'position' && (
                         <button onClick={addStudent} className="button-30" role="button">Add student</button>
                     )}

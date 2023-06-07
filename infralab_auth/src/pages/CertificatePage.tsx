@@ -1,5 +1,6 @@
 import { useAuth } from '../components/context/AuthProvider';
 import { Navigate, useLocation } from 'react-router-dom';
+import StudentInfo from '../components/display/StudentInfo'
 
 const CertificatePage = () => {
 
@@ -14,7 +15,7 @@ const CertificatePage = () => {
     
     return (
         <>
-        <div>Certificate page</div>
+            <StudentInfo />
         </>
     )
 }

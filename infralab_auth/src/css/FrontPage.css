@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'Barlow';
+    src: url('../fonts/Barlow-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bold';
+    src: url('../fonts/Barlow-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'semibold';
+    src: url('../fonts/Barlow-SemiBold.ttf') format('truetype');
+}
+
 * {
     font-family: 'Barlow';
 }
@@ -34,13 +49,20 @@ ol li, ul li {
         max-width: 1140px;
     }
 }
-  
+
+body {
+    margin-top: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
 .error {
     color: #C3362B;
 }
   
-
 .button-30 {
     align-items: center;
     text-align: center;
@@ -81,3 +103,58 @@ ol li, ul li {
     box-shadow: #D6D6E7 0 3px 7px inset;
     transform: translateY(2px);
 }
+
+/* test */
+
+.nav {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.nav-tabs {
+    margin-bottom: 15px;
+}
+  
+.nav-item {
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: white;
+}
+
+.nav-item button {
+    background-color: transparent;
+    width: 100%;
+    padding-bottom: 15px;
+}
+  
+.nav-link.active {
+    border-bottom: 3px solid #663366;
+    color: #202021;
+}
+  
+.nav-link {
+    color: #CECECE;
+    border: 0;
+    padding: 10px;
+    
+}
+  
+  .nav-link.active:hover {
+    background-color: #CECECE;
+    border-bottom: 3px solid #663366;
+  }
+  
+  .nav-link:hover {
+    color: #272729;
+    border-bottom: 1px solid #CECECE;
+  }
+  
+  .nav button {
+    cursor: pointer;
+    font-weight: bolder;
+  }
+
+  
