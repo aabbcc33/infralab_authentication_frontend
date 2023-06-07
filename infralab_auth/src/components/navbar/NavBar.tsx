@@ -26,10 +26,6 @@ function NavBar() {
             <nav className={styles.navBar}>
                 <div className={styles.logo}><NavLink to={"/"}><img src={logo}/></NavLink></div>
                 <div className={styles.auth}>
-                    <div className={styles.credbox}>
-                        <div>Logged in as: {auth.name}</div>
-                        <div>Email: {auth.email}</div>
-                    </div>
                     <div  className={styles.buttonbox}>
                         <button onClick={logout} className="button-30" role="button">Logout</button>
                     </div>
