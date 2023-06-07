@@ -19,7 +19,7 @@ const FrontPage = () => {
         const authProviderUrl: string = "https://identity.fhict.nl/connect/authorize";
         const client_id: string = "i476232-infralabau";
         const scopes: string = "fhict fhict_personal openid profile roles";
-        const redirectUri: string = "https://localhost:8080/";
+        const redirectUri: string = "https://infralab.fontysict.nl:8080";
         const response_type: string = "code";
 
         // this parameter is added for security to prevent forgery of the url
@@ -43,13 +43,13 @@ const FrontPage = () => {
         const code = urlParams.get('code');
         
         // send code to backend
-        axios.get("https://localhost:8080/?code=" + code).catch(error => console.log(error));
+        axios.get("https://infralab.fontysict.nl:8080/?code=" + code).catch(error => console.log(error));
 
       }, [window.location]);
 
 
     const getCert = () => {
-        return axios.get("https://172.16.1.12:8080/certificates").then((response) => {
+        return axios.get("https://infralab.fontysict.nl:8080/certificates").then((response) => {
             setCertificate(response.data);
         })
     };
