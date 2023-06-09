@@ -22,6 +22,7 @@ const FrontPage = () => {
         const redirectUri: string = "https://infralab.fontysict.nl:8080";
         const response_type: string = "code";
 
+
         // this parameter is added for security to prevent forgery of the url
         const state: string = generateState();
 
