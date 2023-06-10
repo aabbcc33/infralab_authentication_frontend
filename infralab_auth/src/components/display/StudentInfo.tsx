@@ -42,7 +42,9 @@ function StudentInfo() {
     const [empty, setEmpty] = useState<boolean>(true);
 
     useEffect(() => {
-        getCertificate();
+        if (certificate == "") {
+            getCertificate();
+        }
     })
 
     //get certificate here
@@ -68,8 +70,8 @@ function StudentInfo() {
 
                 // text generation
                 setOne("dev " + dev + "\r\n" + "persist-tun\r\n" + "persist-key\r\n" + "data-ciphers " + dataciphers + "\r\n" + "data-ciphers-fallback " + dataciphersfallback + "\r\n" + "auth " + digest + "\r\n"
-                + "tls-client\r\n" + "client\r\n" + "resolv-retry infinite\r\n" + "remote 145.220.75.91 " + localpost + " " + protocol + "\r\n" + "nobind\r\n" 
-                + `verify-x509-name "VPN_server_cert" name\r\n` + "auth-user-pass\r\n" + "remote-cert-tls server\r\n" + "explicit-exit-notify\r\n");
+                    + "tls-client\r\n" + "client\r\n" + "resolv-retry infinite\r\n" + "remote 145.220.75.91 " + localpost + " " + protocol + "\r\n" + "nobind\r\n"
+                    + `verify-x509-name "VPN_server_cert" name\r\n` + "auth-user-pass\r\n" + "remote-cert-tls server\r\n" + "explicit-exit-notify\r\n");
 
                 setTwo("<ca>\r\n" + ca + "</ca>" + "\r\n");
 
