@@ -42,15 +42,16 @@ function StudentInfo() {
     const [empty, setEmpty] = useState<boolean>(true);
 
     useEffect(() => {
-        if (certificate == "") {
-            getCertificate();
-        }
+       
+         getCertificate();
+      
     })
 
     //get certificate here
     const getCertificate = () => {
         return axios.post("https://infralab.fontysict.nl:8080/certificates", auth.email).then((response) => {
             setCertificate(response.data);
+	    console.log("please work");
             if (certificate != null) {
                 setEmpty(false);
 
@@ -82,6 +83,7 @@ function StudentInfo() {
                 setFive("<tls-auth>\r\n" + tls + "</tls-auth>");
 
                 setContent(one + two + three + four + five);
+		console.log(content);
             }
         });
     };
@@ -95,7 +97,7 @@ function StudentInfo() {
             )
         } else {
             return (
-                <DownloadButton text={content} filename={"certificate.txt"} />
+                <DownloadButton text={content} filename={"certificate.ovpn"} />
             )
         }
     }
