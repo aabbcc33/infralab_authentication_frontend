@@ -17,7 +17,6 @@ function StudentInfo() {
     const [localpost, setLocalport] = useState<string>("");
     const [protocol, setProtocol] = useState<string>("");
     const [tls, setTls] = useState<string>("");
-    const [name, setName] = useState<string>("");
 
     const [ca, setCa] = useState<string>("");
 
