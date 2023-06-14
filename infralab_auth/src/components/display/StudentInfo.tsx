@@ -22,7 +22,7 @@ function StudentInfo() {
 
     const [cert, setCert] = useState<string>("");
     const [prvkey, setPrvkey] = useState<string>("");
-
+    const [name, setName] = useState<string>("");
     // dividing the file into 5 sections for better code readability 
     // one: header part until start of ca
     // two: ca
@@ -40,6 +40,7 @@ function StudentInfo() {
 
     // empty check
     const [empty, setEmpty] = useState<boolean>(true);
+
 
     useEffect(() => {
         if (certificate == "") {
@@ -67,11 +68,12 @@ function StudentInfo() {
 
                 setCert(response.data.cert);
                 setPrvkey(response.data.prvkey);
+                setName(response.data.name);
 
                 // text generation
                 setOne("dev " + dev + "\r\n" + "persist-tun\r\n" + "persist-key\r\n" + "data-ciphers " + dataciphers + "\r\n" + "data-ciphers-fallback " + dataciphersfallback + "\r\n" + "auth " + digest + "\r\n"
                     + "tls-client\r\n" + "client\r\n" + "resolv-retry infinite\r\n" + "remote 145.220.75.91 " + localpost + " " + protocol + "\r\n" + "nobind\r\n"
-                    + `verify-x509-name "VPN_server_cert" name\r\n` + "auth-user-pass\r\n" + "remote-cert-tls server\r\n" + "explicit-exit-notify\r\n");
+                    + `verify-x509-name "${name}" name\r\n` + "auth-user-pass\r\n" + "remote-cert-tls server\r\n" + "explicit-exit-notify\r\n");
 
                 setTwo("<ca>\r\n" + ca + "</ca>" + "\r\n");
 
