@@ -7,7 +7,6 @@ import DownloadButton from './DownloadButton';
 function StudentInfo() {
 
     const { auth } = useAuth();
-    const [certificate, setCertificate] = useState<string>("");
 
     // certificate values
     const [dev, setDev] = useState<string>("");
@@ -43,17 +42,17 @@ function StudentInfo() {
 
 
     useEffect(() => {
-       
-         getCertificate();
-      
-    })
+        console.log("in use effect")
+        if (content == "") {
+            getCertificate();
+        }
+    }, [])
 
     //get certificate here
     const getCertificate = () => {
+        console.log("in get cert");
         return axios.post("https://infralab.fontysict.nl:8080/certificates", auth.email).then((response) => {
-            setCertificate(response.data);
-	    console.log("please work");
-            if (certificate != null) {
+            if (response.data != null) {
                 setEmpty(false);
 
                 // set content
@@ -64,8 +63,6 @@ function StudentInfo() {
                 setLocalport(response.data.local_port);
                 setProtocol(response.data.protocol);
                 setTls(response.data.tls);
-		setName(response.data.name);
-
                 setCa(response.data.ca_cert);
 
                 setCert(response.data.cert);
@@ -86,7 +83,7 @@ function StudentInfo() {
                 setFive("<tls-auth>\r\n" + tls + "</tls-auth>");
 
                 setContent(one + two + three + four + five);
-		console.log(content);
+                console.log(content);
             }
         });
     };

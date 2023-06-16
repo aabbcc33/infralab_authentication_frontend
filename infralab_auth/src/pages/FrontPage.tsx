@@ -9,7 +9,7 @@ import StudentInfo from '../components/display/StudentInfo';
 const FrontPage = () => {
 
     const [certificate, setCertificate] = useState<string>("");
-    const { auth }  = useAuth();
+    const { auth } = useAuth();
     const { saveAuth } = useAuth();
     const navigate = useNavigate();
 
@@ -42,11 +42,11 @@ const FrontPage = () => {
         // because fontys API response is a link, we need to get its code param and send it to our backend
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
-        
+
         // send code to backend
         axios.get("https://infralab.fontysict.nl:8080/?code=" + code).catch(error => console.log(error));
 
-      }, [window.location]);
+    }, [window.location]);
 
 
     const getCert = () => {
@@ -62,12 +62,12 @@ const FrontPage = () => {
     const sendTeacher = () => {
         navigate("/admin");
     }
-    
+
     // change display of front page depending on user creds
     if (auth?.roles.includes("student")) {
         return (
             <>
-                <StudentInfo/>
+                <StudentInfo />
             </>
         )
     } else if (auth?.roles.includes("teacher")) {
@@ -97,14 +97,11 @@ const FrontPage = () => {
                     <button onClick={redirectButton} className="button-30" role="button">Authenticate with fhict</button>
                 </div>
                 <label>{certificate}</label>
-                <div>
-                    <button onClick={getCert} className="button-30" role="button">get cert?</button>
-                </div>
             </>
         )
     }
 
-    
+
 
 }
 
