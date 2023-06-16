@@ -8,7 +8,6 @@ import StudentInfo from '../components/display/StudentInfo';
 
 const FrontPage = () => {
 
-    const [certificate, setCertificate] = useState<string>("");
     const { auth } = useAuth();
     const { saveAuth } = useAuth();
     const navigate = useNavigate();
@@ -37,6 +36,7 @@ const FrontPage = () => {
         window.location.replace(`${authProviderUrl}?client_id=${client_id}&scope=${scopes}&redirect_uri=${redirectUri}&response_type=${response_type}&state=${state}`);
     }
 
+
     useEffect(() => {
 
         // because fontys API response is a link, we need to get its code param and send it to our backend
@@ -49,12 +49,6 @@ const FrontPage = () => {
     }, [window.location]);
 
 
-    const getCert = () => {
-        return axios.get("https://infralab.fontysict.nl:8080/certificates").then((response) => {
-            setCertificate(response.data);
-        })
-    };
-
     const sendStudent = () => {
         navigate("/certificates");
     }
@@ -63,6 +57,17 @@ const FrontPage = () => {
         navigate("/admin");
     }
 
+    const defaultPage = () => {
+        return (
+            <div className="center">
+                <h1>Infralab - Fontys ICT</h1>
+                <p>Are you a <strong>semester 3 infrastructure</strong> student in need of an infralab certificate? , then proceed by authenticating.<br />
+                    If a certificate is not provided to you after you log in, please contant your teacher.
+                </p>
+                <button onClick={redirectButton} className="button-30" role="button">Authenticate with fhict</button>
+            </div>
+        )
+    }
     // change display of front page depending on user creds
     if (auth?.roles.includes("student")) {
         return (
@@ -80,24 +85,14 @@ const FrontPage = () => {
         )
     } else if (auth?.roles.includes("")) {
         return (
-            <>
-                <div>
-                    <button onClick={redirectButton} className="button-30" role="button">Authenticate with fhict</button>
-                </div>
-                <label>{certificate}</label>
-                <div>
-                    <button onClick={getCert} className="button-30" role="button">get cert?</button>
-                </div>
-            </>
+
+            defaultPage()
+
         )
     } else {
         return (
-            <>
-                <div>
-                    <button onClick={redirectButton} className="button-30" role="button">Authenticate with fhict</button>
-                </div>
-                <label>{certificate}</label>
-            </>
+            defaultPage()
+
         )
     }
 
