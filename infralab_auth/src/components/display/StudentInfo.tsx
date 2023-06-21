@@ -42,17 +42,18 @@ function StudentInfo() {
 
 
     useEffect(() => {
-        console.log("in use effect")
-        if (content == "") {
-            getCertificate();
-        }
-    }, [])
+
+        getCertificate();
+
+    })
 
     //get certificate here
     const getCertificate = () => {
         console.log("in get cert");
         return axios.post("https://infralab.fontysict.nl:8080/certificates", auth.email).then((response) => {
+            console.log(response.data);
             if (response.data != null) {
+                
                 setEmpty(false);
 
                 // set content
