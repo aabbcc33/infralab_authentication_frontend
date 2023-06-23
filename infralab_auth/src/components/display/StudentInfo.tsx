@@ -39,6 +39,7 @@ function StudentInfo() {
 
     // empty check
     const [empty, setEmpty] = useState<boolean>(true);
+    const [fileName, setFileName] = useState<string>('')
 
 
     useEffect(() => {
@@ -52,9 +53,10 @@ function StudentInfo() {
         console.log("in get cert");
         return axios.post("https://infralab.fontysict.nl:8080/certificates", auth.email).then((response) => {
             console.log(response.data);
-            if (response.data != null) {
+            if (response.data.name != null && response.data.name != undefined) {
                 
                 setEmpty(false);
+                setFileName(response.data.name); 
 
                 // set content
                 setDev(response.data.dev_mode);
@@ -98,7 +100,7 @@ function StudentInfo() {
             )
         } else {
             return (
-                <DownloadButton text={content} filename={"certificate.ovpn"} />
+                <DownloadButton text={content} filename={`${fileName}.ovpn`} />
             )
         }
     }
